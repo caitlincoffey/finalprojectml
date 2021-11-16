@@ -1,20 +1,18 @@
-## Splitting audio into different tracks (5 tracks)
+## Splitting audio into different tracks
 
 Full product: https://splitter.ai/ 
 
-Python library: https://pypi.org/project/spleeter/ 
+Model idea 1: https://github.com/sigsep/open-unmix-pytorch/blob/master/openunmix/model.py
+
+[Model diagram](https://pytorch.org/assets/images/sigsep_umx-diagram.png)
+
+Model idea 2: (simple) https://sigsep.github.io/ismir2018_tutorial/#/39
+
+More model ideas: 
+https://sigsep.github.io/tutorials/#aes-virtual-symposium-2020-current-trends-in-audio-source-separation
 
 dataset: https://sigsep.github.io/datasets/
 
-## Generating music
-
-https://openai.com/blog/musenet/
-
-## CNN to remove noise in music
-
-https://medium.com/axinc-ai/unetsourceseparation-a-machine-learning-model-to-remove-audio-noise-and-extract-voices-5acae8c37291
-https://towardsdatascience.com/background-noise-removal-traditional-vs-ai-algorithms-9e7ec5776173
-with deep learning: https://towardsdatascience.com/real-time-noise-suppression-using-deep-learning-38719819e051
-
-## Deep learning based pitch detection
-https://praveenkrishna.medium.com/deep-learning-based-pitch-detection-cnn-lstm-3a2c5477c4e6
+How to load musedb dataset: https://github.com/sigsep/sigsep-mus-db
+Example notebook:
+https://colab.research.google.com/drive/1Zo6iSPIi6SjOAL7wg8yzVWkS9mjLgjI-#scrollTo=GzxqV0HgcK3n
