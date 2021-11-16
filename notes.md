@@ -17,3 +17,8 @@ How to load musedb dataset: https://github.com/sigsep/sigsep-mus-db
 
 Example notebook:
 https://colab.research.google.com/drive/1Zo6iSPIi6SjOAL7wg8yzVWkS9mjLgjI-#scrollTo=GzxqV0HgcK3n
+
+Ideas: 
+Start with 2 stem separation (vocals + accompaniment), maybe one layer LSTM and one layer fully connected
+
+
