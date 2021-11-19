@@ -21,4 +21,10 @@ https://colab.research.google.com/drive/1Zo6iSPIi6SjOAL7wg8yzVWkS9mjLgjI-#scroll
 Ideas: 
 Start with 2 stem separation (vocals + accompaniment), maybe one layer LSTM and one layer fully connected
 
+Final Project Deliverable:
+Research, Theory, or Ethics needs to be done
+Github, Jupyter notebook
+
+Should likely convert to time-frequency domain, you can use edges of harmonics that don't overlap to back out of the overlapping frequencies
+
 
