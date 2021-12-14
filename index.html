@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<!--
+	Tessellate by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Stem Splitter AI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header" class="dark">
+				<header>
+					<h1>Stem Splitter AI</h1>
+					<p>A LSTM machine learning algorithm that splits mp4 audio into two parts, vocals and non-vocals. <br>
+						Created by Benji Pugh and Caitlin Coffey.</p>
+				</header>
+				<footer>
+					<a href="#second" class="button scrolly">Learn More</a>
+				</footer>
+			</section>
+
+		<!-- Second -->
+		<section id="second" class="main">
+			<header>
+				<div class="container">
+					<h2>Introduction</h2>
+					<p>Stem splitting is the process of isolating different parts of a song into its individual pieces, typically vocal, percussive, and instrumental parts. This is useful for music creation, sampling, and remixing because it gives musicians the ability to create different aspects of music than what the original author intended. 
+						Our goal is to split a song into two parts: vocals and the accompaniment. Below is an example of a stem split between vocals and non-vocals:</p>
+		
+					<p>Original Song</p>
+						<audio controls loop>
+					<source src="" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+					<p>Vocals</p>
+						<audio controls loop>
+					<source src="" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+					<p>Accompaniment</p>
+						<audio controls loop>
+					<source src="" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				
+					</div>
+			</header>
+			<div class="content dark style2">
+				<div class="container">
+					<div class="row">
+						<div class="col-4 col-12">
+							<section>
+								<h3>The Applications of Machine Learning</h3>
+								<p>One of the main challenges of stem splitting is isolating the correct frequencies. For each instrument or voice, there are a set of undertones and overtones that give it its unique sound, otherwise known as timbre. To isolate a part from the rest of the song, we must correctly identify the overtones and undertones associated with the part.</p>
+								<p>In addition, the frequencies from each of these parts often overlap with each other, meaning separation is not as simple as recognizing that an instrument is playing and completely eliminating every frequency that the instrument plays.  This complex set of problems makes this a well suited situation for a neural network because a neural network will learn to identify and isolate the frequencies associated with vocalization.</p>
+								<p>Designing a machine learning model which separates these parts is difficult, but not impossible. Many groups, such as <a href=”#resources”>SigSep</a> and <a href=”#resources”>Google’s Magenta Research group</a>, have successfully used LSTM neural networks to recognize patterns in vocals and instrumentation. Once the algorithm successfully isolates these frequencies, they can be filtered out and separated accordingly. </p>
+								<footer>
+									<a href="#first" class="button scrolly">How it Works</a>
+								</footer>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- First -->
+			<section id="first" class="main">
+				<header>
+					<div class="container">
+						<h2>How it Works</h2>
+						<p>Below is an overview of the steps we took to create our final product. Our process can be split into three parts: converting audio to frequency-domain tensors, applying our machine learning model, and converting back our results to mp3 audio. You can learn more about each step by clicking on its respective icon below.</p>
+					</div>
+				</header>
+				<div class="content dark style1 featured">
+					<div class="container">
+						<div class="row">
+							<div class="col-4 col-12-narrow">
+								<section>
+									<span class="feature-icon"><span class="icon"><i class="fa fa-database" aria-hidden="true"></i></span></span>
+
+									<header>
+										<h3><a href="">Data Preprocessing</a></h3>
+									</header>
+									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
+									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
+									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
+									accumsan vivamus.</p>
+								</section>
+							</div>
+							<div class="col-4 col-12-narrow">
+								<section>
+									<span class="feature-icon"><span class="icon"><i class="fa fa-cogs" aria-hidden="true"></i>
+									</span></span>
+									<header>
+										<h3>Applying the Model</h3>
+									</header>
+									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
+									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
+									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
+									accumsan vivamus.</p>
+								</section>
+							</div>
+							<div class="col-4 col-12-narrow">
+								<section>
+									<span class="feature-icon"><span class="icon"><i class="fa fa-volume-up" aria-hidden="true"></i></span></span>
+									<header>
+										<h3>Converting Results to Audio</h3>
+									</header>
+									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
+									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
+									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
+									accumsan vivamus.</p>
+								</section>
+							</div>
+							<div class="col-12">
+								<footer>
+									<a href="https://colab.research.google.com/drive/1MoKlI5E7qZubZriCn8jqByd47bSrc17J?usp=sharing" class="button scrolly">View on Google Colab</a>
+								</footer>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<section id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+				<div class="copyright">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
