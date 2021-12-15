@@ -17,7 +17,7 @@
 			<section id="header" class="dark">
 				<header>
 					<h1>Stem Splitter AI</h1>
-					<p>A LSTM machine learning algorithm that splits mp4 audio into two parts, vocals and non-vocals. <br>
+					<p>A LSTM machine learning algorithm designed to split stem audio files into vocal tracks. <br>
 						Created by Benji Pugh and Caitlin Coffey.</p>
 				</header>
 				<footer>
@@ -31,21 +31,16 @@
 				<div class="container">
 					<h2>Introduction</h2>
 					<p>Stem splitting is the process of isolating different parts of a song into its individual pieces, typically vocal, percussive, and instrumental parts. This is useful for music creation, sampling, and remixing because it gives musicians the ability to create different aspects of music than what the original author intended. 
-						Our goal is to split a song into two parts: vocals and the accompaniment. Below is an example of a stem split between vocals and non-vocals:</p>
+						Our goal is to separate the vocals from the rest of a piece. Below is an example of a stem split of vocals and a comparison with the original piece:</p>
 		
 					<p>Original Song</p>
 						<audio controls loop>
-					<source src="" type="audio/mpeg">
+					<source src="assets/rock_full.mp3" type="audio/mpeg">
 					Your browser does not support the audio element.
 					</audio>
 					<p>Vocals</p>
 						<audio controls loop>
-					<source src="" type="audio/mpeg">
-					Your browser does not support the audio element.
-					</audio>
-					<p>Accompaniment</p>
-						<audio controls loop>
-					<source src="" type="audio/mpeg">
+					<source src="assets/rock_vocals.mp3" type="audio/mpeg">
 					Your browser does not support the audio element.
 					</audio>
 				
@@ -56,12 +51,12 @@
 					<div class="row">
 						<div class="col-4 col-12">
 							<section>
-								<h3>The Applications of Machine Learning</h3>
+								<h3>The Applications of Machine Learning in Stem Splitting</h3>
 								<p>One of the main challenges of stem splitting is isolating the correct frequencies. For each instrument or voice, there are a set of undertones and overtones that give it its unique sound, otherwise known as timbre. To isolate a part from the rest of the song, we must correctly identify the overtones and undertones associated with the part.</p>
 								<p>In addition, the frequencies from each of these parts often overlap with each other, meaning separation is not as simple as recognizing that an instrument is playing and completely eliminating every frequency that the instrument plays.  This complex set of problems makes this a well suited situation for a neural network because a neural network will learn to identify and isolate the frequencies associated with vocalization.</p>
 								<p>Designing a machine learning model which separates these parts is difficult, but not impossible. Many groups, such as <a href=”#resources”>SigSep</a> and <a href=”#resources”>Google’s Magenta Research group</a>, have successfully used LSTM neural networks to recognize patterns in vocals and instrumentation. Once the algorithm successfully isolates these frequencies, they can be filtered out and separated accordingly. </p>
 								<footer>
-									<a href="#first" class="button scrolly">How it Works</a>
+									<a href="#third" class="button scrolly">Our Methodology</a>
 								</footer>
 							</section>
 						</div>
@@ -70,14 +65,34 @@
 			</div>
 		</section>
 
-		<!-- First -->
-			<section id="first" class="main">
+		
+
+		
+
+	<!-- Third -->
+		<section id="third" class="main">
 				<header>
 					<div class="container">
-						<h2>How it Works</h2>
-						<p>Below is an overview of the steps we took to create our final product. Our process can be split into three parts: converting audio to frequency-domain tensors, applying our machine learning model, and converting back our results to mp3 audio. You can learn more about each step by clicking on its respective icon below.</p>
+						<span class="image centered"><img src="assets/general model-100.jpg" alt="" /></span>
+						<h2>Our General Method</h2>
+						<p>Below is an overview of the general steps we took to create our final models. 
+							We developed our method architecture with guidance from SigSep, 
+									an existing signal-separation model built in PyTorch. 
+									Our general method is to use a neural network to generate a mask to 
+									filter out every audio frequency that is not vocals. 
+									</p>
+									<p>
+									Our methodology can be split into three parts: 
+									converting audio to frequency-domain tensors, 
+									building our dataset and applying our model, and converting back our results to audio. 
+									</p>
+						
 					</div>
 				</header>
+
+		<!-- First -->
+			<section id="first" class="main">
+
 				<div class="content dark style1 featured">
 					<div class="container">
 						<div class="row">
@@ -86,12 +101,15 @@
 									<span class="feature-icon"><span class="icon"><i class="fa fa-database" aria-hidden="true"></i></span></span>
 
 									<header>
-										<h3><a href="">Data Preprocessing</a></h3>
+										<h3>Data Preprocessing</h3>
 									</header>
-									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
-									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
-									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
-									accumsan vivamus.</p>
+									
+								<p>A useful way to represent audio is to analyze its frequencies over time, 
+								creating what is called a spectrogram. This allows us to easily reduce 
+								different amounts of each frequency by simply applying a filter “mask” to the 
+								spectrogram. For preprocessing our stem files, we use the built-in Short-Time 
+								Fourier Transform method in PyTorch, which creates a spectrogram that can be passed 
+								into the neural network.</p>
 								</section>
 							</div>
 							<div class="col-4 col-12-narrow">
@@ -99,12 +117,14 @@
 									<span class="feature-icon"><span class="icon"><i class="fa fa-cogs" aria-hidden="true"></i>
 									</span></span>
 									<header>
-										<h3>Applying the Model</h3>
+										<h3>Building the Dataset</h3>
 									</header>
-									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
-									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
-									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
-									accumsan vivamus.</p>
+									<p>To build a neural network with the architecture that we created, 
+										we must also create a dataset that fits our model. 
+										We used the MUSDB dataset of music and its stems as a basis, 
+										applying an STFT to the music as the input to the network, and 
+										calculating an ideal filter (a mask of values that when multiplied by the spectrogram 
+										of the song output only the vocals) to use as the neural network’s target. </p>
 								</section>
 							</div>
 							<div class="col-4 col-12-narrow">
@@ -113,21 +133,216 @@
 									<header>
 										<h3>Converting Results to Audio</h3>
 									</header>
-									<p>Gravida dis placerat lectus ante vel nunc euismod est turpis sodales.
-									Diam tempor dui lacinia accumsan vivamus. Gravida dis placerat lectus
-									ante vel nunc euismod est turpis sodales. Diam tempor dui lacinia
-									accumsan vivamus.</p>
+									<p>Once the neural network has created a mask for the audio, 
+										we can apply the mask to the original spectrogram and turn 
+										the spectrogram back into audio. If the neural network performs 
+										well, the output will be only the vocals from the original music track.
+									</p>
 								</section>
 							</div>
-							<div class="col-12">
-								<footer>
-									<a href="https://colab.research.google.com/drive/1MoKlI5E7qZubZriCn8jqByd47bSrc17J?usp=sharing" class="button scrolly">View on Google Colab</a>
-								</footer>
-							</div>
+				
 						</div>
 					</div>
 				</div>
 			</section>
+
+<!-- Second -->
+<section id="second" class="main">
+	<div class="content dark style2">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-12-narrow">
+					<div class="row">
+						<div class="col-12-narrow"><a href="#" class="image fit"><img src="assets/multi layer perceptron model-100.jpg" alt="" /></a></div>
+					</div>
+				</div>
+				<div class="col-6 col-12-narrow">
+					<section>
+						<header><h3>The Multi-Layer Perceptron Model</h3></header>
+						<p>As a baseline, we created a simple three-layer Multilayer Perceptron. 
+							This model consists of several dense layers with Rectified Linear Unit (ReLU) 
+							activation functions after each layer. </p>
+						<p>We wanted to create this model as a way to better understand the impact of adding 
+							an LSTM layer, which we explore in the next iteration of our model. This was also a 
+							good starting point for us because of the complexity of the data we were working with.
+						</p>
+					</section>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+		<!-- First -->
+		<section id="first" class="main">
+			<header>
+				<div class="container">
+	
+					<h2>An Introduction to LSTM</h2>
+					<p>Long short-term memory (LSTM) is a type of recurrent neural network used to process data
+					in sequences, such as audio or video. We will walk through how these networks work, and how they are applicable
+					to audio processing.
+					</p>
+					<br>
+
+					<span class="image centered"><img src="assets/LSTM_memory.png" alt="" />
+						Source: <a href="https://sigsep.github.io/tutorials/#aes-virtual-symposium-2020-current-trends-in-audio-source-separation"></a>
+					<br>
+				</span>
+					<p>LSTM works by connecting a series of different inputs to the network in a chain of LSTM cells which pass memory through the series. Each cell determines what memory to pass onto the next cell based on its piece of data, the previous piece of data, and the memory that was passed to it. If these inputs are pieces of data across time, then the LSTM will determine the output of the current state in part from the previous states.</p>
+				<p>The LSTM cells accomplish this behavior by having “gates”, which based on data and trained weights decide whether to keep previous memory (known as “cell state”), decide whether to store data into the cell state, and finally passes on the cell state to the next cell.</p>
+				<span class="image centered"><img src="assets/single_lstm_diagram.png" alt="" />
+				Source: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTMs, Colah's Blog</a>
+				<br></span>
+				
+				<p>As pictured in the diagram, gates are simply the sigmoid expression multiplying a term because the sigmoid expression squashes values between one and zero, and multiplying one or zero by an expression allows data to pass or block it through the gate.</p>
+
+				<br>
+				<br>
+				<h2>LSTM Applications for Audio Processing</h2>
+				<p>LSTM networks are especially useful for dealing with inputs that 
+						change over time because as their name suggests, they perform long-term 
+						and short-term memory on a piece of data, picking up on both immediate and 
+						long-term context.</p>
+				<p>LSTM networks have now become the most common method for neural network audio processing. This is because audio relies on events that happen over time. In fact, music is much more about the change in frequencies over time than the specific frequencies themselves. The LSTM network, therefore, should introduce fewer audio artifacts because unlike a Multilayer Perceptron, the LSTM network has temporal stability (each output should make sense relative to the previous).</p>
+				<br>
+				<span class="image centered"><img src="assets/basic lstm model-100.jpg" alt="" /></span>
+				<p>For our LSTM neural network, we simply added a single unidirectional LSTM layer to three fully connected layers. This architecture is very similar to our Multilayer Perceptron model, but with the significant added complexity that the data being handled by the network now has the extra dimension of time.</p>
+			</div>
+			<br>
+			<br>
+			<h2>Results</h2>
+			<br>
+			
+				<div class="row">
+				
+				<div class="col-4">Rock Music (Original)<a href="#" class="image fit"><img src="assets/rock_full_spectro.png" alt="" /></a></div>
+				<div class="col-4">Rock Music with MLP<a href="#" class="image fit"><img src="assets/rock_mlp_spectro.png" alt="" /></a></div>
+				<div class="col-4">Rock Music with LSTM<a href="#" class="image fit"><img src="assets/rock_lstm_spectro.png" alt="" /></a></div>
+				
+				</div>
+		
+			<p>As pictured in the spectrograms, both the Multilayer Perceptron and the LSTM networks significantly filtered the original audio. We can hear what these spectrograms sound like in the next section!</p>
+			</header>
+
+
+	</header>
+	<div class="content dark style1 featured">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-4 col-12-narrow">
+					<section>
+						<header>
+							<h3>Folk Music</h3>
+						</header>
+					
+					<p>Original:</p>
+					<audio controls loop>
+						<source src="assets/folk_full.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					<p>MLP Model:</p>
+					<audio controls loop>
+						<source src="assets/folk_mlp.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					<p>LSTM Model:</p>
+					<audio controls loop>
+						<source src="assets/folk_lstm.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+						<p>Actual Vocals:</p>
+					<audio controls loop>
+						<source src="assets/folk_vocals.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+				
+					</section>
+				</div>
+				<div class="col-4 col-12-narrow">
+					<section>
+		
+						<header>
+							<h3>Rock Music</h3>
+						</header>
+						<p>Original:</p>
+					<audio controls loop>
+						<source src="assets/rock_full.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+						<p>MLP Model:</p>
+					<audio controls loop>
+						<source src="assets/rock_mlp.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+						<p>LSTM Model:</p>
+					<audio controls loop>
+						<source src="assets/rock_lstm.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+						<p>Actual Vocals:</p>
+					<audio controls loop>
+						<source src="assets/rock_vocals.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</section>
+				</div>
+				<div class="col-4 col-12-narrow">
+					<section>
+						
+						<header>
+							<h3>Percussive Music</h3>
+						</header>
+						<p>Original:</p>
+						<audio controls loop>
+							<source src="assets/percussive_full.mp3" type="audio/mpeg">
+							Your browser does not support the audio element.
+							</audio>
+							<p>MLP Model:</p>
+							<audio controls loop>
+								<source src="assets/percussive_mlp.mp3" type="audio/mpeg">
+								Your browser does not support the audio element.
+								</audio>
+							<p>LSTM Model:</p>
+						<audio controls loop>
+						<source src="assets/percussive_lstm.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+						<p>Actual Vocals:</p>
+					<audio controls loop>
+						<source src="assets/percussive_vocals.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</section>
+				</div>
+	
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="third" class="main">
+	<header>
+		<div class="container">
+			<h2>Interpretation</h2>
+			<p>Admittedly, the audio that was passed through both of the networks came out very distorted. However, qualitatively the result from the LSTM network does have less distortion and does seem to reduce percussion and bass significantly. This better performance can likely be attributed to LSTM’s temporal stability.</p>
+			<p>A significant portion of our non-spectacular results can be attributed to the models not being trained to completion. Since we are dealing with a lot of data, processing, and intense neural networks, we were only able to train our networks for a small number of epochs. We likely would have seen better results if we trained for longer and had faster hardware.</p>
+			<p>Another challenge of our model was handling exploding gradients. We adjusted this by decreasing our learning rate, but by doing so we could have sacrificed some of the training capabilities of our model. We found that data normalization helped control exploding gradients. If we had time, we could have debugged this issue further by evaluating the weights coming in and out of each layer. </p>
+			<p>We know that for models such as OpenUnmix’s model library and Magenta’s music generation model, multiple LSTM layers are defined in the model. Our basic LSTM model had only one LSTM layer so we could learn more about the effect of adding more layers.</p>
+			<br>
+			<br>
+			<h2>Resources</h2>
+			<p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTMs, Colah's Blog</a></p>
+		<p><a href="https://sigsep.github.io/tutorials/#aes-virtual-symposium-2020-current-trends-in-audio-source-separation">SigSep Tutorials, Current Trends in Audio Separation</a></p>
+		<p><a href="https://sigsep.github.io/datasets/">SigSep MUSDB Dataset</a></p>
+		<p><a href="https://github.com/sigsep/open-unmix-pytorch/">OpenUnmix PyTorch Library</a></p>
+	</div>
+	</header>
+	</div>
+</section>
+
 
 		<!-- Footer -->
 			<section id="footer">
